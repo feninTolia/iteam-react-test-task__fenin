@@ -5,7 +5,7 @@ import { jobMock } from '@/shared/mocks/job';
 import { AppLink, AppLinkTheme } from '@/shared/ui/AppLink';
 import { Avatar } from '@/shared/ui/Avatar';
 import { Text, TextSize } from '@/shared/ui/Text';
-import { Page } from '@/shared/widgets/Page';
+import { Page } from '@/widgets/Page';
 
 interface IProps {
   id?: string;

@@ -2,7 +2,7 @@
 import { JobList } from '@/entities/Job';
 import { jobMock } from '@/shared/mocks/job';
 import { Text, TextSize } from '@/shared/ui/Text';
-import { Page } from '@/shared/widgets/Page';
+import { Page } from '@/widgets/Page';
 import { useFetchJobsList } from '../../model/hooks/useFetchJobsList/useFetchJobsList';
 import { JobsPageFilters } from '../JobsPageFilters/JobsPageFilters';
 

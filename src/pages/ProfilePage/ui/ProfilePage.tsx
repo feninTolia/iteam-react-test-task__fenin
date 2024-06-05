@@ -1,4 +1,4 @@
-import { Page } from '@/shared/widgets/Page';
+import { Page } from '@/widgets/Page';
 
 type Props = {};
 

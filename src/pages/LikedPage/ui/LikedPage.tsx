@@ -3,7 +3,7 @@ import { LikeButton } from '@/features/LikeButton';
 import { getLikedFromLS } from '@/shared/lib/helpers/getLikedFromLS';
 import { AppLink, AppLinkTheme } from '@/shared/ui/AppLink';
 import { Text, TextSize } from '@/shared/ui/Text';
-import { Page } from '@/shared/widgets/Page';
+import { Page } from '@/widgets/Page';
 
 type Props = {};
 

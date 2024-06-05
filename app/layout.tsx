@@ -1,6 +1,6 @@
 import { SearchProvider } from '@/app/providers/SearchProvider';
 import QueryProvider from '@/app/providers/WithQueryProvider';
-import { AppLink } from '@/shared/ui/AppLink';
+import { Navbar } from '@/widgets/Navbar/ui/Navbar';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
@@ -22,7 +22,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <SearchProvider>
           <QueryProvider>
-            <AppLink href="/">Home</AppLink>
+            <Navbar />
             {children}
           </QueryProvider>
         </SearchProvider>
