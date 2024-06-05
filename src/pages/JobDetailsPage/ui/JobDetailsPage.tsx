@@ -1,13 +1,10 @@
 'use client';
-import { useFetchJobById } from '@/entities/Job/model/hooks/useFetchJobById/useFetchJobById';
+import { LikeButton } from '@/features/LikeButton';
+import { getPostedAt } from '@/shared/lib/helpers/getPostedAt';
 import { jobMock } from '@/shared/mocks/job';
 import { AppLink, AppLinkTheme } from '@/shared/ui/AppLink';
 import { Avatar } from '@/shared/ui/Avatar';
 import { Text, TextSize } from '@/shared/ui/Text';
-import Star from '@/shared/assets/icons/star.svg';
-import { Button, ButtonTheme } from '@/shared/ui/Button';
-import { useCallback } from 'react';
-import { getPostedAt } from '@/shared/lib/helpers/getPostedAt';
 import { Page } from '@/shared/widgets/Page';
 
 interface IProps {
@@ -23,14 +20,6 @@ export const JobDetailsPage = ({ id }: IProps) => {
   //   return <p>Loading...</p>;
   // }
 
-  const handleClick = useCallback(() => {
-    const liked = localStorage.getItem('liked');
-    const likedArray = JSON.parse(liked ?? '[]') as Array<{}>;
-
-    likedArray.push({ id: fixedId, title: job.job_title });
-    localStorage.setItem('liked', JSON.stringify(likedArray));
-  }, [fixedId]);
-
   if (!job) {
     return null;
   }
@@ -41,11 +30,7 @@ export const JobDetailsPage = ({ id }: IProps) => {
     <Page className="flex flex-col gap-4">
       <div className="flex justify-between items-center">
         <Text size={TextSize.XXXL} title={job.job_title} />
-        <Button theme={ButtonTheme.CLEAR} onClick={handleClick}>
-          <Star
-            className={'hover:brightness-75 transition-all text-blue-500'}
-          />
-        </Button>
+        <LikeButton id={fixedId} jobTitle={job.job_title} />
       </div>
       <div className="flex items-center gap-2 ">
         {!!job.employer_logo && <Avatar src={job.employer_logo} />}
