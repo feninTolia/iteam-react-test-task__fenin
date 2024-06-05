@@ -5,7 +5,7 @@ interface IProps {
 }
 
 const JobDetails = ({ params }: IProps) => {
-  return <JobDetailsPage />;
+  return <JobDetailsPage id={params.id} />;
 };
 
 export default JobDetails;

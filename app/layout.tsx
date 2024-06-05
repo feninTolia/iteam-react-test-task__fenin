@@ -1,7 +1,7 @@
 import QueryProvider from '@/app/providers/WithQueryProvider';
+import { AppLink } from '@/shared/ui/AppLink';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import Link from 'next/link';
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -17,14 +17,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <QueryProvider>
-      <html lang="en">
-        <body className={inter.className}>
-          <Link href="/">Home</Link>
-
+    <html lang="en">
+      <body className={inter.className}>
+        <QueryProvider>
+          <AppLink href="/">Home</AppLink>
           {children}
-        </body>
-      </html>
-    </QueryProvider>
+        </QueryProvider>
+      </body>
+    </html>
   );
 }

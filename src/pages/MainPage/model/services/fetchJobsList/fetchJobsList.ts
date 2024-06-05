@@ -1,12 +1,6 @@
+import { IJob } from '@/entities/Job';
 import { $api } from '@/shared/api/api';
-import { IJob } from '../../types';
-
-interface IApIResponse<T> {
-  status: string;
-  request_id: string;
-  parameters: {};
-  data: T;
-}
+import { IApIResponse } from '@/shared/types/api';
 
 export const fetchJobsList = async () => {
   try {

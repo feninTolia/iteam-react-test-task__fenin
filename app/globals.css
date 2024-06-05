@@ -3,31 +3,36 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --foreground-rgb: 34, 34, 34;
+  --background-clr: #fff;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --foreground-rgb: 173, 181, 189;
+    --background-clr: #212529;
   }
 }
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: var(--background-clr);
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+}
+
+@layer components {
+  .clear {
+    @apply hover:cursor-pointer hover:brightness-[80%] focus:brightness-[80%] transition-all;
+  }
+  .link-btn-primary {
+    @apply py-2 px-4 w-fit bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:bg-blue-700;
+  }
+  .link-accent {
+    @apply text-blue-500 hover:cursor-pointer hover:brightness-[80%] focus:brightness-[80%] transition-all;
   }
 }

@@ -1,18 +1,34 @@
 import Link from 'next/link';
-import { ReactNode } from 'react';
+import { HTMLAttributeAnchorTarget, ReactNode } from 'react';
+
+export enum AppLinkTheme {
+  CLEAR = 'clear',
+  ACCENT = 'link-accent',
+  PRIMARY = 'link-btn-primary',
+}
 
 interface IProps {
-  href: string;
+  href: string | undefined;
   children: ReactNode;
+  className?: string;
+  target?: HTMLAttributeAnchorTarget;
+  theme?: AppLinkTheme;
 }
 
 export const AppLink = (props: IProps) => {
-  const { href, children } = props;
+  const {
+    href = '#',
+    target = '_self',
+    children,
+    className,
+    theme: appLinkTheme = AppLinkTheme.ACCENT,
+  } = props;
 
   return (
     <Link
+      target={target}
       href={href}
-      className="text-blue-500 hover:cursor-pointer hover:brightness-[80%] transition-all"
+      className={`${appLinkTheme} ${className}`}
     >
       {children}
     </Link>
