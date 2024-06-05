@@ -3,8 +3,8 @@ import { ButtonHTMLAttributes, memo } from 'react';
 export enum ButtonTheme {
   PRIMARY = 'link-btn-primary',
   CLEAR = 'clear',
+  OUTLINED = 'btn-outlined',
   //   CLEAR_INVERTED = 'clearInverted',
-  //   OUTLINED = 'outlined',
   //   OUTLINED_RED = 'outlinedRed',
   //   BACKGROUND = 'background',
   //   BACKGROUND_INVERTED = 'backgroundInverted',

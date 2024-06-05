@@ -27,6 +27,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'media.glassdoor.com',
       },
+      {
+        protocol: 'https',
+        hostname: '*',
+      },
     ],
   },
 };

@@ -8,7 +8,11 @@ interface IAvatarProps {
 }
 
 export const Avatar = (props: IAvatarProps) => {
-  const { className, src = '', alt = 'avatar', size = 20 } = props;
+  const { className, src, alt = 'avatar', size = 20 } = props;
+
+  if (!src) {
+    return null;
+  }
 
   return (
     <Image
@@ -16,7 +20,7 @@ export const Avatar = (props: IAvatarProps) => {
       alt={alt}
       width={size}
       height={size}
-      className={`rounded-full ${className}`}
+      className={`rounded-full overflow-hidden ${className} bg-slate-700 text-[8px]`}
     />
   );
 };

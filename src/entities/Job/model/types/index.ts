@@ -1,7 +1,7 @@
 export interface IJob {
   employer_name?: string;
   employer_logo?: string;
-  employer_website?: null;
+  employer_website?: string | null;
   employer_company_type?: string;
   job_publisher?: string;
   job_id?: string;

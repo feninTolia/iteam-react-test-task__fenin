@@ -1,5 +1,7 @@
+import { Page } from '@/shared/widgets/Page';
+
 type Props = {};
 
 export const ProfilePage = (props: Props) => {
-  return <div>ProfilePage</div>;
+  return <Page>ProfilePage</Page>;
 };

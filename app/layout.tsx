@@ -1,3 +1,4 @@
+import { SearchProvider } from '@/app/providers/SearchProvider';
 import QueryProvider from '@/app/providers/WithQueryProvider';
 import { AppLink } from '@/shared/ui/AppLink';
 import type { Metadata } from 'next';
@@ -19,10 +20,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <QueryProvider>
-          <AppLink href="/">Home</AppLink>
-          {children}
-        </QueryProvider>
+        <SearchProvider>
+          <QueryProvider>
+            <AppLink href="/">Home</AppLink>
+            {children}
+          </QueryProvider>
+        </SearchProvider>
       </body>
     </html>
   );

@@ -20,7 +20,7 @@ export const JobListItem = ({ job }: IProps) => {
     <li>
       <Card className=" min-w-60 flex flex-col gap-2">
         <div className="flex items-center gap-2">
-          <Avatar src={job.employer_logo ?? ''} />
+          {job.employer_logo && <Avatar src={job.employer_logo} />}
 
           <AppLink
             href={job.employer_website ?? '#'}

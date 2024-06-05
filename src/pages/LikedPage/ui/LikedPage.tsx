@@ -1,6 +1,7 @@
 'use client';
 import { AppLink, AppLinkTheme } from '@/shared/ui/AppLink';
 import { Text } from '@/shared/ui/Text';
+import { Page } from '@/shared/widgets/Page';
 
 type Props = {};
 
@@ -12,7 +13,7 @@ export const LikedPage = (props: Props) => {
   }>;
 
   return (
-    <div>
+    <Page>
       {likedArray.map((liked) => (
         <AppLink
           key={liked.id}
@@ -22,6 +23,6 @@ export const LikedPage = (props: Props) => {
           <Text title={liked.title} />
         </AppLink>
       ))}
-    </div>
+    </Page>
   );
 };

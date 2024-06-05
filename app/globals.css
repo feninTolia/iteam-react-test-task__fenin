@@ -5,6 +5,7 @@
 :root {
   --foreground-rgb: 34, 34, 34;
   --background-clr: #fff;
+  --navbar-height: 70px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -30,9 +31,12 @@ body {
     @apply hover:cursor-pointer hover:brightness-[80%] focus:brightness-[80%] transition-all;
   }
   .link-btn-primary {
-    @apply py-2 px-4 w-fit bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:bg-blue-700;
+    @apply py-2 px-4 w-fit bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:bg-blue-700 transition-all;
   }
   .link-accent {
     @apply text-blue-500 hover:cursor-pointer hover:brightness-[80%] focus:brightness-[80%] transition-all;
+  }
+  .btn-outlined {
+    @apply py-2 px-4 w-fit bg-inherit text-slate-500 font-semibold rounded-lg shadow-md hover:brightness-[80%] focus:brightness-[80%] border border-slate-500 transition-all;
   }
 }

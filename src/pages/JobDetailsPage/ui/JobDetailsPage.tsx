@@ -8,6 +8,7 @@ import Star from '@/shared/assets/icons/star.svg';
 import { Button, ButtonTheme } from '@/shared/ui/Button';
 import { useCallback } from 'react';
 import { getPostedAt } from '@/shared/lib/helpers/getPostedAt';
+import { Page } from '@/shared/widgets/Page';
 
 interface IProps {
   id?: string;
@@ -37,7 +38,7 @@ export const JobDetailsPage = ({ id }: IProps) => {
   const postedAt = getPostedAt(job.job_posted_at_timestamp);
 
   return (
-    <div className="flex flex-col gap-4">
+    <Page className="flex flex-col gap-4">
       <div className="flex justify-between items-center">
         <Text size={TextSize.XXXL} title={job.job_title} />
         <Button theme={ButtonTheme.CLEAR} onClick={handleClick}>
@@ -47,7 +48,7 @@ export const JobDetailsPage = ({ id }: IProps) => {
         </Button>
       </div>
       <div className="flex items-center gap-2 ">
-        {job.employer_logo && <Avatar src={job.employer_logo} />}
+        {!!job.employer_logo && <Avatar src={job.employer_logo} />}
         <AppLink
           href={job.employer_website ?? '#'}
           theme={AppLinkTheme.CLEAR}
@@ -82,6 +83,6 @@ export const JobDetailsPage = ({ id }: IProps) => {
       >
         Apply
       </AppLink>
-    </div>
+    </Page>
   );
 };

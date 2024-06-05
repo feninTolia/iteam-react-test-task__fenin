@@ -2,11 +2,11 @@ import { IJob } from '@/entities/Job';
 import { $api } from '@/shared/api/api';
 import { IApIResponse } from '@/shared/types/api';
 
-export const fetchJobsList = async () => {
+export const fetchJobsList = async (search?: string) => {
   try {
     const response = await $api.get<IApIResponse<IJob[]>>('/search', {
       params: {
-        query: 'Python developer in Texas, USA',
+        query: search ?? ' ',
       },
     });
 

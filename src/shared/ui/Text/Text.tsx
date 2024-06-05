@@ -1,7 +1,6 @@
 export enum TextTheme {
   PRIMARY = '',
-  //   INVERTED = 'inverted',
-  //   ERROR = 'error',
+  ERROR = 'text-red-400',
 }
 export enum TextAlign {
   CENTER = 'center',
@@ -9,7 +8,7 @@ export enum TextAlign {
   LEFT = 'left',
 }
 export enum TextSize {
-  S = 'text_sm',
+  S = 'text-sm',
   M = 'text-base',
   XXL = 'text-2xl',
   XXXL = 'text-3xl',
