@@ -4,6 +4,7 @@ import { Navbar } from '@/widgets/Navbar/ui/Navbar';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
+import { ProfileProvider } from '@/app/providers/ProfileProvider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -20,12 +21,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <SearchProvider>
-          <QueryProvider>
-            <Navbar />
-            {children}
-          </QueryProvider>
-        </SearchProvider>
+        <ProfileProvider>
+          <SearchProvider>
+            <QueryProvider>
+              <Navbar />
+              {children}
+            </QueryProvider>
+          </SearchProvider>
+        </ProfileProvider>
       </body>
     </html>
   );

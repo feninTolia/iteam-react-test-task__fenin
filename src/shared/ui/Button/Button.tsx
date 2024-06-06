@@ -22,6 +22,7 @@ interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   squared?: boolean;
   size?: ButtonSize;
   fullWidth?: boolean;
+  disabled?: boolean;
 }
 
 export const Button = memo((props: IButtonProps) => {
@@ -44,7 +45,9 @@ export const Button = memo((props: IButtonProps) => {
 
   return (
     <button
-      className={`${theme} ${className}`}
+      className={`${theme} ${
+        disabled && 'opacity-50 hover:brightness-100'
+      } ${className} `}
       //   className={classNames(cls.Button, mods, [
       //     className,
       //     cls[theme],

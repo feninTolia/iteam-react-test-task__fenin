@@ -1,16 +1,13 @@
 'use client';
 import { SearchContext } from '@/shared/lib/context/SearchContext';
 import { Button, ButtonTheme } from '@/shared/ui/Button';
-import { Input } from '@/shared/ui/Input/Input';
-import { Text } from '@/shared/ui/Text';
+import { Input } from '@/shared/ui/Input';
 import { Form, Formik } from 'formik';
 import { useContext } from 'react';
 import { useFetchJobsList } from '../../model/hooks/useFetchJobsList/useFetchJobsList';
 import { searchValidationSchema } from '../../model/validation/searchValidationSchema';
 
-interface IProps {}
-
-export const JobsPageFilters = (props: IProps) => {
+export const JobsPageFilters = () => {
   const { refetch } = useFetchJobsList();
   const { setSearch } = useContext(SearchContext);
 
@@ -23,17 +20,17 @@ export const JobsPageFilters = (props: IProps) => {
       }}
     >
       <Form>
-        <label className="flex flex-col gap-2">
-          <Text text="Search by position" />
+        <div className="flex flex-col gap-2">
           <Input
             name="search"
+            label="Search by position"
             handleChange={setSearch}
             placeholder="For example: Python developer"
           />
           <Button type="submit" theme={ButtonTheme.OUTLINED}>
             Search
           </Button>
-        </label>
+        </div>
       </Form>
     </Formik>
   );

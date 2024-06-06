@@ -1,7 +1,10 @@
+import { EditableProfileCard } from '@/features/EditableProfileCard';
 import { Page } from '@/widgets/Page';
 
-type Props = {};
-
-export const ProfilePage = (props: Props) => {
-  return <Page>ProfilePage</Page>;
+export const ProfilePage = () => {
+  return (
+    <Page>
+      <EditableProfileCard />
+    </Page>
+  );
 };
