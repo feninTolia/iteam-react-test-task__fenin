@@ -3,7 +3,7 @@ import { IJob } from '../../model/types';
 import { JobListItem } from '../JobListItem/JobListItem';
 
 interface IProps {
-  jobs?: IJob[];
+  jobs?: IJob[] | null;
 }
 
 export const JobsList = memo(({ jobs }: IProps) => {

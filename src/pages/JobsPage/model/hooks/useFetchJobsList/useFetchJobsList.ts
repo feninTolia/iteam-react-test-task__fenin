@@ -1,5 +1,5 @@
 'use client';
-import { useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import { fetchJobsList } from '../../services/fetchJobsList/fetchJobsList';
 import { useContext } from 'react';
 import { SearchContext } from '@/shared/lib/context/SearchContext';

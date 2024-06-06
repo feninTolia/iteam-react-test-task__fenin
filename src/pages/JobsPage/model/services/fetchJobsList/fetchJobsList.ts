@@ -7,6 +7,7 @@ export const fetchJobsList = async (search?: string) => {
     const response = await $api.get<IApIResponse<IJob[]>>('/search', {
       params: {
         query: search ?? ' ',
+        num_pages: 10,
       },
     });
 
