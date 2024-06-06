@@ -15,7 +15,7 @@ export const EditableProfileCard = memo(() => {
     if (profileFromLS) {
       setProfile?.(profileFromLS);
     }
-  }, []);
+  }, [setProfile]);
 
   useEffect(() => {
     const profileFromLS = getProfileFromLS();
@@ -30,7 +30,7 @@ export const EditableProfileCard = memo(() => {
 
   const handleCancel = useCallback(() => {
     extractProfileFromLSToContext();
-  }, []);
+  }, [extractProfileFromLSToContext]);
 
   const onInputChange = useCallback(
     (inputName: ProfileInputField, value: string) => {
