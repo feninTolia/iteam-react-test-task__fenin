@@ -1,12 +1,10 @@
 export const getLikedFromLS = () => {
-  const liked = localStorage.getItem('liked');
+  const liked = localStorage?.getItem('liked');
 
-  const likedArray = JSON.parse(liked ?? '[]') as Array<{
+  return JSON.parse(liked ?? '[]') as Array<{
     id: string | undefined;
     title: string;
   }>;
-
-  return likedArray;
 };
 
 export const isIdInLiked = (id: string | undefined) => {

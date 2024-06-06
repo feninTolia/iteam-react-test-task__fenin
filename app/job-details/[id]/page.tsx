@@ -1,4 +1,4 @@
-import { JobDetailsPage } from '@/pages/JobDetailsPage';
+import { JobDetailsPage } from '@/pagesContent/JobDetailsPage';
 
 interface IProps {
   params: { id: string };

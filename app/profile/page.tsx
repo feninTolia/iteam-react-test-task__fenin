@@ -1,4 +1,4 @@
-import { ProfilePage } from '@/pages/ProfilePage';
+import { ProfilePage } from '@/pagesContent/ProfilePage';
 
 type Props = {};
 

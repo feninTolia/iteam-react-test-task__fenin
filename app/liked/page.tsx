@@ -1,4 +1,4 @@
-import { LikedPage } from '@/pages/LikedPage';
+import { LikedPage } from '@/pagesContent/LikedPage';
 
 const Liked = () => {
   return <LikedPage />;

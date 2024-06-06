@@ -4,9 +4,20 @@ import { getLikedFromLS } from '@/shared/lib/helpers/getLikedFromLS';
 import { AppLink, AppLinkTheme } from '@/shared/ui/AppLink';
 import { Text, TextSize } from '@/shared/ui/Text';
 import { Page } from '@/widgets/Page';
+import { useEffect, useState } from 'react';
 
 export const LikedPage = () => {
-  const likedArray = getLikedFromLS();
+  const [likedArray, setLikedArray] = useState<
+    {
+      id: string | undefined;
+      title: string;
+    }[]
+  >([]);
+
+  useEffect(() => {
+    const result = getLikedFromLS();
+    setLikedArray(result);
+  }, []);
 
   return (
     <Page>

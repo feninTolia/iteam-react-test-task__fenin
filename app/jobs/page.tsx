@@ -1,4 +1,4 @@
-import { JobsPage } from '@/pages/JobsPage';
+import { JobsPage } from '@/pagesContent/JobsPage';
 
 const Jobs = () => {
   return <JobsPage />;

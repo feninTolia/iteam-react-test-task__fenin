@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { fetchJobsList } from '../../services/fetchJobsList/fetchJobsList';
 
 export const useFetchRecommendedJobsList = (search?: string) => {
-  const result = useQuery({
+  return useQuery({
     queryKey: ['recommended-jobs-list'],
     queryFn: () => {
       if (!search) return null;
@@ -11,7 +11,6 @@ export const useFetchRecommendedJobsList = (search?: string) => {
       return fetchJobsList(search);
     },
     refetchOnReconnect: false,
+    enabled: false,
   });
-
-  return result;
 };

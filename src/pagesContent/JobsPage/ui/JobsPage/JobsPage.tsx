@@ -1,19 +1,31 @@
 'use client';
 import { JobList } from '@/entities/Job';
+import { IProfile } from '@/entities/Profile';
 import { getProfileFromLS } from '@/shared/lib/helpers/getProfileFromLS';
 import { Text, TextSize } from '@/shared/ui/Text';
 import { Page } from '@/widgets/Page';
-import { memo } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { useFetchJobsList } from '../../model/hooks/useFetchJobsList/useFetchJobsList';
 import { useFetchRecommendedJobsList } from '../../model/hooks/useFetchRecommendedJobsList/useFetchRecommendedJobsList';
 import { JobsPageFilters } from '../JobsPageFilters/JobsPageFilters';
 
-export const JobsPage = memo(() => {
+const JobsPage = memo(() => {
+  const [profile, setProfile] = useState<IProfile>();
+
   const { data: jobs, isLoading: isJobsLoading } = useFetchJobsList();
 
-  const profile = getProfileFromLS();
-  const { data: recommendedJobs, isLoading: isRecommendedLoading } =
-    useFetchRecommendedJobsList(profile?.desiredJob);
+  const {
+    data: recommendedJobs,
+    isLoading: isRecommendedLoading,
+    refetch,
+  } = useFetchRecommendedJobsList(profile?.desiredJob);
+
+  useEffect(() => {
+    const result = getProfileFromLS();
+    setProfile(result);
+    refetch(); // ????
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const isLoading = isJobsLoading || isRecommendedLoading;
 
@@ -55,3 +67,5 @@ export const JobsPage = memo(() => {
     </Page>
   );
 });
+
+export default JobsPage;
