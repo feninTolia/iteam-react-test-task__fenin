@@ -5,9 +5,7 @@ import { AppLink, AppLinkTheme } from '@/shared/ui/AppLink';
 import { Text, TextSize } from '@/shared/ui/Text';
 import { Page } from '@/widgets/Page';
 
-type Props = {};
-
-export const LikedPage = (props: Props) => {
+export const LikedPage = () => {
   const likedArray = getLikedFromLS();
 
   return (
@@ -19,7 +17,7 @@ export const LikedPage = (props: Props) => {
       />
       <ul className="flex flex-col gap-8  items-center">
         {likedArray.map((liked) => (
-          <li key={liked.id} className="flex gap-4">
+          <li key={liked.id} className="flex justify-between gap-4 w-full">
             <AppLink
               href={`/job-details/${liked.id}`}
               theme={AppLinkTheme.CLEAR}
