@@ -3,21 +3,23 @@ import { SearchContext } from '@/shared/lib/context/SearchContext';
 import { Button, ButtonTheme } from '@/shared/ui/Button';
 import { Input } from '@/shared/ui/Input';
 import { Form, Formik } from 'formik';
-import { useContext } from 'react';
+import { memo, useCallback, useContext } from 'react';
 import { useFetchJobsList } from '../../model/hooks/useFetchJobsList/useFetchJobsList';
 import { searchValidationSchema } from '../../model/validation/searchValidationSchema';
 
-export const JobsPageFilters = () => {
+export const JobsPageFilters = memo(() => {
   const { refetch } = useFetchJobsList();
   const { setSearch } = useContext(SearchContext);
+
+  const handleSubmit = useCallback(() => {
+    refetch();
+  }, [refetch]);
 
   return (
     <Formik
       initialValues={{ search: '' }}
       validationSchema={searchValidationSchema}
-      onSubmit={(values, actions) => {
-        refetch();
-      }}
+      onSubmit={handleSubmit}
     >
       <Form>
         <div className="flex flex-col gap-2">
@@ -34,4 +36,4 @@ export const JobsPageFilters = () => {
       </Form>
     </Formik>
   );
-};
+});

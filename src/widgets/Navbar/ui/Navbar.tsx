@@ -1,9 +1,7 @@
 import { AppLink } from '@/shared/ui/AppLink';
-import React from 'react';
+import { memo } from 'react';
 
-interface IProps {}
-
-export const Navbar = (props: IProps) => {
+export const Navbar = memo(() => {
   return (
     <div className=" flex gap-4 px-8 py-4">
       <AppLink href="/jobs">Vacancies</AppLink>
@@ -12,4 +10,4 @@ export const Navbar = (props: IProps) => {
       <AppLink href="/liked">Liked</AppLink>
     </div>
   );
-};
+});

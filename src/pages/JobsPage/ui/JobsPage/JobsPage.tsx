@@ -5,8 +5,9 @@ import { Text, TextSize } from '@/shared/ui/Text';
 import { Page } from '@/widgets/Page';
 import { useFetchJobsList } from '../../model/hooks/useFetchJobsList/useFetchJobsList';
 import { JobsPageFilters } from '../JobsPageFilters/JobsPageFilters';
+import { memo } from 'react';
 
-export const JobsPage = () => {
+export const JobsPage = memo(() => {
   const { data: jobs, isLoading } = useFetchJobsList();
 
   return (
@@ -37,4 +38,4 @@ export const JobsPage = () => {
       </div>
     </Page>
   );
-};
+});

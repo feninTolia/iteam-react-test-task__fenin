@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { memo } from 'react';
 
 interface IAvatarProps {
   className?: string;
@@ -7,7 +8,7 @@ interface IAvatarProps {
   size?: number;
 }
 
-export const Avatar = (props: IAvatarProps) => {
+export const Avatar = memo((props: IAvatarProps) => {
   const { className, src, alt = 'avatar', size = 20 } = props;
 
   if (!src) {
@@ -23,4 +24,4 @@ export const Avatar = (props: IAvatarProps) => {
       className={`rounded-full overflow-hidden ${className} bg-slate-700 text-[8px]`}
     />
   );
-};
+});

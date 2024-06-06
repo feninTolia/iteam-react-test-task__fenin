@@ -1,4 +1,5 @@
 'use client';
+import { useFetchJobById } from '@/entities/Job/model/hooks/useFetchJobById/useFetchJobById';
 import { LikeButton } from '@/features/LikeButton';
 import { getPostedAt } from '@/shared/lib/helpers/getPostedAt';
 import { jobMock } from '@/shared/mocks/job';
@@ -30,7 +31,7 @@ export const JobDetailsPage = ({ id }: IProps) => {
     <Page className="flex flex-col gap-4">
       <div className="flex justify-between items-center">
         <Text size={TextSize.XXXL} title={job.job_title} />
-        <LikeButton id={fixedId} jobTitle={job.job_title} />
+        <LikeButton id={fixedId} jobTitle={job.job_title ?? ''} />
       </div>
       <div className="flex items-center gap-2 ">
         {!!job.employer_logo && <Avatar src={job.employer_logo} />}

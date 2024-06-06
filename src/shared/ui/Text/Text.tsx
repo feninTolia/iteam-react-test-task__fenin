@@ -1,3 +1,5 @@
+import { memo } from 'react';
+
 export enum TextTheme {
   PRIMARY = '',
   ERROR = 'text-red-400',
@@ -33,7 +35,7 @@ const mapSizeToHeaderTag: Record<TextSize, HeaderTag> = {
   [TextSize.XXXL]: 'h1',
 };
 
-export const Text = (props: ITextProps) => {
+export const Text = memo((props: ITextProps) => {
   const {
     className,
     title,
@@ -50,12 +52,13 @@ export const Text = (props: ITextProps) => {
     <div className={`flex flex-col list-disc ${align} ${theme} ${className}`}>
       {title && <HeaderTag className={`font-bold ${size}`}>{title}</HeaderTag>}
       {description && <p className={`${size}`}>{description}</p>}
-      {list &&
-        list.map((item) => (
-          <li className="list-inside " key={item}>
-            {item}
-          </li>
-        ))}
+      {list
+        ? list.map((item) => (
+            <li className="list-inside " key={item}>
+              {item}
+            </li>
+          ))
+        : null}
     </div>
   );
-};
+});

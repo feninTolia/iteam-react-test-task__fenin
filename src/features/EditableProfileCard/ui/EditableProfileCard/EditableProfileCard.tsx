@@ -1,39 +1,36 @@
 'use client';
-import { ProfileCard } from '@/entities/Profile';
-import { ProfileInputField } from '@/entities/Profile/model/constants';
-import { IProfile } from '@/entities/Profile/model/types';
+import { IProfile, ProfileCard, ProfileInputField } from '@/entities/Profile';
 import { ProfileContext } from '@/shared/lib/context/ProfileContext';
 import { getProfileFromLS } from '@/shared/lib/helpers/getProfileFromLS';
-import { Button, ButtonTheme } from '@/shared/ui/Button';
-import { Text, TextSize } from '@/shared/ui/Text';
-import { useCallback, useContext, useEffect, useState } from 'react';
+import { memo, useCallback, useContext, useEffect, useState } from 'react';
+import { EditableProfileCardHeader } from '../EditableProfileCardHeader/EditableProfileCardHeader';
 
-interface IProps {
-  isCreateProfile?: boolean;
-}
-export const EditableProfileCard = ({ isCreateProfile = false }: IProps) => {
+export const EditableProfileCard = memo(() => {
   const { profile, setProfile } = useContext(ProfileContext);
-  const [isEdit, setIsEdit] = useState(isCreateProfile);
+  const [isEdit, setIsEdit] = useState(false);
+  const [isEmptyProfile, setIsEmptyProfile] = useState(true);
 
   const extractProfileFromLSToContext = useCallback(() => {
     const profileFromLS = getProfileFromLS();
     if (profileFromLS) {
       setProfile?.(profileFromLS);
     }
-  }, [setProfile]);
+  }, []);
 
   useEffect(() => {
+    const profileFromLS = getProfileFromLS();
+    const isWithValues = Object?.values(profileFromLS).some((el) => el !== '');
+
+    if (profileFromLS && isWithValues) {
+      setIsEmptyProfile(false);
+    }
     extractProfileFromLSToContext();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleSave = useCallback((values: IProfile) => {
-    localStorage.setItem('profile', JSON.stringify(values));
-  }, []);
-
   const handleCancel = useCallback(() => {
     extractProfileFromLSToContext();
-  }, [extractProfileFromLSToContext]);
+  }, []);
 
   const onInputChange = useCallback(
     (inputName: ProfileInputField, value: string) => {
@@ -44,27 +41,30 @@ export const EditableProfileCard = ({ isCreateProfile = false }: IProps) => {
     [setProfile]
   );
 
+  const onEdit = useCallback(() => {
+    setIsEdit(true);
+  }, []);
+
+  const handleSubmit = useCallback((value: IProfile) => {
+    setIsEdit?.(false);
+    localStorage.setItem('profile', JSON.stringify(value));
+  }, []);
+
   return (
     <div>
-      <div className="flex justify-between items-center mb-8">
-        <Text text="My profile" size={TextSize.XXXL} className="text-white" />
-        <Button
-          disabled={isEdit}
-          theme={ButtonTheme.OUTLINED}
-          onClick={() => setIsEdit(true)}
-        >
-          Edit
-        </Button>
-      </div>
+      <EditableProfileCardHeader
+        isEdit={isEdit}
+        isEmptyProfile={isEmptyProfile}
+        onEdit={onEdit}
+      />
 
       <ProfileCard
         handleChange={onInputChange}
         initialValues={profile}
-        onSave={handleSave}
         onCancel={handleCancel}
         isEdit={isEdit}
-        setIsEdit={setIsEdit}
+        onSubmit={handleSubmit}
       />
     </div>
   );
-};
+});

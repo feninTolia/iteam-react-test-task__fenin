@@ -4,12 +4,13 @@ import { Avatar } from '@/shared/ui/Avatar';
 import { Card } from '@/shared/ui/Card';
 import { Text } from '@/shared/ui/Text';
 import { IJob } from '../../model/types';
+import { memo } from 'react';
 
 interface IProps {
   job: IJob;
 }
 
-export const JobListItem = ({ job }: IProps) => {
+export const JobListItem = memo(({ job }: IProps) => {
   if (!job) {
     return null;
   }
@@ -44,4 +45,4 @@ export const JobListItem = ({ job }: IProps) => {
       </Card>
     </li>
   );
-};
+});

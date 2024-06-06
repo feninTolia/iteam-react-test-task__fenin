@@ -5,25 +5,43 @@ import { Form, Formik } from 'formik';
 import { ProfileInputField } from '../../model/constants';
 import { IProfile } from '../../model/types';
 import { profileValidationSchema } from '../../model/validation/profileValidationSchema';
+import { memo, useCallback } from 'react';
 
 interface IProps {
   handleChange?: (name: ProfileInputField, value: string) => void;
   initialValues?: IProfile;
-  onSave: (values: IProfile) => void;
   onCancel: () => void;
   isEdit?: boolean;
-  setIsEdit?: (value: boolean) => void;
+  onSubmit: (value: IProfile) => void;
 }
 
-export const ProfileCard = (props: IProps) => {
+export const ProfileCard = memo((props: IProps) => {
   const {
     handleChange,
     initialValues,
-    onSave,
     onCancel,
     isEdit = false,
-    setIsEdit,
+    onSubmit,
   } = props;
+
+  const handleChangeName = useCallback(
+    (value: string) => {
+      handleChange?.(ProfileInputField.NAME, value);
+    },
+    [handleChange]
+  );
+  const handleChangeDesiredJob = useCallback(
+    (value: string) => {
+      handleChange?.(ProfileInputField.DESIRED_JOB, value);
+    },
+    [handleChange]
+  );
+  const handleChangeAboutMe = useCallback(
+    (value: string) => {
+      handleChange?.(ProfileInputField.ABOUT_ME, value);
+    },
+    [handleChange]
+  );
 
   return (
     <Formik
@@ -32,10 +50,7 @@ export const ProfileCard = (props: IProps) => {
         desiredJob: initialValues?.desiredJob,
         aboutMe: initialValues?.aboutMe,
       }}
-      onSubmit={(value) => {
-        setIsEdit?.(false);
-        onSave(value);
-      }}
+      onSubmit={onSubmit}
       validationSchema={profileValidationSchema}
       enableReinitialize
     >
@@ -43,27 +58,21 @@ export const ProfileCard = (props: IProps) => {
         <Input
           disabled={!isEdit}
           name={ProfileInputField.NAME}
-          handleChange={(value) =>
-            handleChange?.(ProfileInputField.NAME, value)
-          }
+          handleChange={handleChangeName}
           label="Name"
           placeholder="For example: Anatolii Fenin"
         />
         <Input
           disabled={!isEdit}
           name={ProfileInputField.DESIRED_JOB}
-          handleChange={(value) =>
-            handleChange?.(ProfileInputField.DESIRED_JOB, value)
-          }
+          handleChange={handleChangeDesiredJob}
           label="Desired job"
           placeholder="For example: Junior Frontend Developer"
         />
         <Textarea
           disabled={!isEdit}
           name={ProfileInputField.ABOUT_ME}
-          handleChange={(value) =>
-            handleChange?.(ProfileInputField.ABOUT_ME, value)
-          }
+          handleChange={handleChangeAboutMe}
           label="About me"
           placeholder="For example: I'm a motivated junior front-end developer looking for a full-time role. With a strong sense of
 responsibility, autonomy and collaboration, I'm dedicated to clean, accessible, efficient and
@@ -88,4 +97,4 @@ work with both SQL and NoSQL databases."
       </Form>
     </Formik>
   );
-};
+});

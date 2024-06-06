@@ -2,7 +2,6 @@ import { PropsWithChildren, memo } from 'react';
 
 interface IPageProps {
   className?: string;
-  onScrollEnd?: () => void;
 }
 
 export const Page = memo((props: PropsWithChildren<IPageProps>) => {

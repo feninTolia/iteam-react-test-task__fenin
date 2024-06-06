@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { HTMLAttributeAnchorTarget, ReactNode } from 'react';
+import { HTMLAttributeAnchorTarget, ReactNode, memo } from 'react';
 
 export enum AppLinkTheme {
   CLEAR = 'clear',
@@ -15,7 +15,7 @@ interface IProps {
   theme?: AppLinkTheme;
 }
 
-export const AppLink = (props: IProps) => {
+export const AppLink = memo((props: IProps) => {
   const {
     href = '#',
     target = '_self',
@@ -33,4 +33,4 @@ export const AppLink = (props: IProps) => {
       {children}
     </Link>
   );
-};
+});
