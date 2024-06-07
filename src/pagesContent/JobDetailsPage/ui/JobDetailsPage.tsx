@@ -2,7 +2,6 @@
 import { useFetchJobById } from '@/entities/Job/model/hooks/useFetchJobById/useFetchJobById';
 import { LikeButton } from '@/features/LikeButton';
 import { getPostedAt } from '@/shared/lib/helpers/getPostedAt';
-import { jobMock } from '@/shared/mocks/job';
 import { AppLink, AppLinkTheme } from '@/shared/ui/AppLink';
 import { Avatar } from '@/shared/ui/Avatar';
 import { Text, TextSize } from '@/shared/ui/Text';
@@ -12,14 +11,16 @@ interface IProps {
   id?: string;
 }
 
-const job = jobMock; // TODO
-
 export const JobDetailsPage = ({ id }: IProps) => {
   const fixedId = id?.replace('%3D%3D', '==');
-  // const { data: job, isLoading } = useFetchJobById(fixedId);
-  // if (isLoading) {
-  //   return <p>Loading...</p>;
-  // }
+  const { data: job, isLoading } = useFetchJobById(fixedId);
+  if (isLoading) {
+    return (
+      <Page>
+        <Text text="Loading..." />
+      </Page>
+    );
+  }
 
   if (!job) {
     return null;

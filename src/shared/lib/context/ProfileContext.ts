@@ -5,7 +5,7 @@ import { createContext } from 'react';
 
 export interface IProfileContextProps {
   profile?: IProfile;
-  setProfile?: Dispatch<SetStateAction<IProfile>>;
+  setProfile?: (value: IProfile) => void;
 }
 
 export const ProfileContext = createContext<IProfileContextProps>({});

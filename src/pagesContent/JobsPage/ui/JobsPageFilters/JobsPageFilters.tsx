@@ -6,14 +6,22 @@ import { Form, Formik } from 'formik';
 import { memo, useCallback, useContext } from 'react';
 import { useFetchJobsList } from '../../model/hooks/useFetchJobsList/useFetchJobsList';
 import { searchValidationSchema } from '../../model/validation/searchValidationSchema';
+import { Text } from '@/shared/ui/Text';
 
 export const JobsPageFilters = memo(() => {
-  const { refetch } = useFetchJobsList();
-  const { setSearch } = useContext(SearchContext);
+  const { search, setSearch } = useContext(SearchContext);
+  const { refetch, isFetching } = useFetchJobsList(search);
 
   const handleSubmit = useCallback(() => {
     refetch();
   }, [refetch]);
+
+  const handleChange = useCallback(
+    (value: string) => {
+      setSearch?.(value);
+    },
+    [setSearch]
+  );
 
   return (
     <Formik
@@ -26,13 +34,14 @@ export const JobsPageFilters = memo(() => {
           <Input
             name="search"
             label="Search by position"
-            handleChange={setSearch}
+            handleChange={handleChange}
             placeholder="For example: Python developer"
           />
           <Button type="submit" theme={ButtonTheme.OUTLINED}>
             Search
           </Button>
         </div>
+        {isFetching && <Text text="Loading..." />}
       </Form>
     </Formik>
   );

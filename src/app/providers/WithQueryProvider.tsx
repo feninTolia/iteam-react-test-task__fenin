@@ -6,20 +6,32 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 export interface Props {
   children: ReactNode;
 }
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnMount: false,
+      refetchOnWindowFocus: false,
+      refetchOnReconnect: true,
+      retry: false,
+    },
+  },
+});
+
 const QueryProvider: FC<Props> = ({ children }) => {
-  const [queryClient] = useState(
-    () =>
-      new QueryClient({
-        defaultOptions: {
-          queries: {
-            refetchOnMount: false,
-            refetchOnWindowFocus: false,
-            refetchOnReconnect: true,
-            retry: 1,
-          },
-        },
-      })
-  );
+  // const [queryClient] = useState(
+  //   () =>
+  //     new QueryClient({
+  //       defaultOptions: {
+  //         queries: {
+  //           refetchOnMount: false,
+  //           refetchOnWindowFocus: false,
+  //           refetchOnReconnect: true,
+  //           retry: 1,
+  //         },
+  //       },
+  //     })
+  // );
   return (
     <QueryClientProvider client={queryClient}>
       {children}

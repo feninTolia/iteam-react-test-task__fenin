@@ -10,24 +10,25 @@ import { useFetchRecommendedJobsList } from '../../model/hooks/useFetchRecommend
 import { JobsPageFilters } from '../JobsPageFilters/JobsPageFilters';
 
 const JobsPage = memo(() => {
-  const [profile, setProfile] = useState<IProfile>();
+  const [profile, setProfile] = useState<IProfile | null>(null);
+  const [shouldFetch, setShouldFetch] = useState(false);
 
   const { data: jobs, isLoading: isJobsLoading } = useFetchJobsList();
-
-  const {
-    data: recommendedJobs,
-    isLoading: isRecommendedLoading,
-    refetch,
-  } = useFetchRecommendedJobsList(profile?.desiredJob);
+  const { data: recommendedJobs, isFetching } = useFetchRecommendedJobsList(
+    profile?.desiredJob,
+    {
+      enabled: shouldFetch,
+    }
+  );
 
   useEffect(() => {
     const result = getProfileFromLS();
     setProfile(result);
-    refetch(); // ????
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    setShouldFetch(true); // Trigger the recommended jobs fetch after setting the profile
   }, []);
 
-  const isLoading = isJobsLoading || isRecommendedLoading;
+  const isLoading = isJobsLoading || isFetching;
+  const isData = jobs || recommendedJobs;
 
   return (
     <Page>
@@ -38,7 +39,7 @@ const JobsPage = memo(() => {
       />
       <div className="flex gap-8 justify-between">
         <div>
-          {isLoading && <Text text="Loading..." />}
+          {isLoading && !isData && <Text text="Loading..." />}
 
           {!jobs && !recommendedJobs && !isLoading && (
             <Text
