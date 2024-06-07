@@ -14,10 +14,6 @@ export const ProfileProvider = ({ children }: IProfileProviderProps) => {
     aboutMe: '',
   });
 
-  // const setProfile = useCallback((value: IProfile) => {
-  //   setProfileState(value);
-  // }, []);
-
   const defaultProps = useMemo(() => ({ profile, setProfile }), [profile]);
 
   return (

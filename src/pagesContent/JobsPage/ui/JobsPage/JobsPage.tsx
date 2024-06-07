@@ -51,16 +51,6 @@ const JobsPage = memo(() => {
           {(jobs || recommendedJobs) && (
             <JobList jobs={jobs ?? recommendedJobs} />
           )}
-
-          {/* {!jobs && (
-            <JobList
-              jobs={[
-                { ...jobMock, job_id: '1' },
-                { ...jobMock, job_id: '2' },
-                { ...jobMock, job_id: '43' },
-              ]}
-            />
-          )} */}
         </div>
 
         <JobsPageFilters />

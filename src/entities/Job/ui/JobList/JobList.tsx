@@ -9,8 +9,7 @@ interface IProps {
 
 export const JobsList = memo(({ jobs }: IProps) => {
   if (!jobs) {
-    return <p>Loading...</p>;
-    // return <Skeleton>; // TODO
+    return <Text text="Loading" />;
   }
 
   if (jobs.length === 0) {
