@@ -18,19 +18,20 @@ export const EditableProfileCard = memo(() => {
   }, [setProfile]);
 
   useEffect(() => {
+    extractProfileFromLSToContext();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
     const profileFromLS = getProfileFromLS();
     const isWithValues = Object?.values(profileFromLS).some((el) => el !== '');
 
     if (profileFromLS && isWithValues) {
       setIsEmptyProfile(false);
+    } else {
+      setIsEmptyProfile(true);
     }
-    extractProfileFromLSToContext();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const handleCancel = useCallback(() => {
-    extractProfileFromLSToContext();
-  }, [extractProfileFromLSToContext]);
+  }, [isEdit]);
 
   const onInputChange = useCallback(
     (inputName: ProfileInputField, value: string) => {
@@ -45,8 +46,13 @@ export const EditableProfileCard = memo(() => {
     setIsEdit(true);
   }, []);
 
+  const handleCancel = useCallback(() => {
+    extractProfileFromLSToContext();
+    setIsEdit(false);
+  }, [extractProfileFromLSToContext]);
+
   const handleSubmit = useCallback((value: IProfile) => {
-    setIsEdit?.(false);
+    setIsEdit(false);
     localStorage.setItem('profile', JSON.stringify(value));
   }, []);
 

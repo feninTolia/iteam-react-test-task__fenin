@@ -86,6 +86,7 @@ work with both SQL and NoSQL databases."
               theme={ButtonTheme.OUTLINED}
               onClick={onCancel}
               disabled={!isEdit}
+              type="button"
             >
               Cancel
             </Button>

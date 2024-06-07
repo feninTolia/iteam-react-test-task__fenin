@@ -10,9 +10,6 @@ export const useFetchRecommendedJobsList = (
   search?: string,
   options?: IOptions
 ) => {
-  console.log('in hook');
-  console.log('search', search);
-
   return useQuery({
     queryKey: ['recommended-jobs-list'],
     staleTime: 60000,
