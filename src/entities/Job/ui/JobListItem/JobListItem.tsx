@@ -5,6 +5,7 @@ import { Card } from '@/shared/ui/Card';
 import { Text } from '@/shared/ui/Text';
 import { IJob } from '../../model/types';
 import { memo } from 'react';
+import { RoutePath } from '@/shared/constants/router';
 
 interface IProps {
   job: IJob;
@@ -24,7 +25,7 @@ export const JobListItem = memo(({ job }: IProps) => {
           {job.employer_logo && <Avatar src={job.employer_logo} />}
 
           <AppLink
-            href={job.employer_website ?? '#'}
+            href={job.employer_website ?? RoutePath.ROOT}
             target="_blank"
             theme={AppLinkTheme.CLEAR}
           >
@@ -33,7 +34,7 @@ export const JobListItem = memo(({ job }: IProps) => {
           <Text text={postedAt} className=" text-gray-500" />
         </div>
         <AppLink
-          href={`/job-details/${job.job_id}`}
+          href={`${RoutePath.JOB_DETAILS}/${job.job_id}`}
           className="line-clamp-1 text-2xl font-bold"
         >
           {job.job_title}
@@ -41,7 +42,9 @@ export const JobListItem = memo(({ job }: IProps) => {
         <p className="max-h-20 overflow-hidden line-clamp-3">
           {job.job_description}
         </p>
-        <AppLink href={`/job-details/${job.job_id}`}>Details</AppLink>
+        <AppLink href={`${RoutePath.JOB_DETAILS}/${job.job_id}`}>
+          Details
+        </AppLink>
       </Card>
     </li>
   );

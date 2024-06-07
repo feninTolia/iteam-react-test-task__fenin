@@ -13,12 +13,13 @@ export const JobsPageFilters = memo(() => {
   const { refetch, isFetching } = useFetchJobsList(search);
 
   const handleSubmit = useCallback(() => {
+    if (!search) return;
     refetch();
-  }, [refetch]);
+  }, [refetch, search]);
 
   const handleChange = useCallback(
     (value: string) => {
-      setSearch?.(value);
+      setSearch?.(value.trim());
     },
     [setSearch]
   );

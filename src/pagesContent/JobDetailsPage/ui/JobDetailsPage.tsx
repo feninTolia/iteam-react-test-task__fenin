@@ -1,6 +1,7 @@
 'use client';
 import { useFetchJobById } from '@/entities/Job/model/hooks/useFetchJobById/useFetchJobById';
 import { LikeButton } from '@/features/LikeButton';
+import { RoutePath } from '@/shared/constants/router';
 import { getPostedAt } from '@/shared/lib/helpers/getPostedAt';
 import { AppLink, AppLinkTheme } from '@/shared/ui/AppLink';
 import { Avatar } from '@/shared/ui/Avatar';
@@ -37,7 +38,7 @@ export const JobDetailsPage = ({ id }: IProps) => {
       <div className="flex items-center gap-2 ">
         {!!job.employer_logo && <Avatar src={job.employer_logo} />}
         <AppLink
-          href={job.employer_website ?? '#'}
+          href={job.employer_website ?? RoutePath.ROOT}
           theme={AppLinkTheme.CLEAR}
           target="_blank"
         >

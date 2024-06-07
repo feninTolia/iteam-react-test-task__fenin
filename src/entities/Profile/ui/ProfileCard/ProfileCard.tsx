@@ -32,7 +32,7 @@ export const ProfileCard = memo((props: IProps) => {
   );
   const handleChangeDesiredJob = useCallback(
     (value: string) => {
-      handleChange?.(ProfileInputField.DESIRED_JOB, value);
+      handleChange?.(ProfileInputField.DESIRED_JOB, value.trim());
     },
     [handleChange]
   );
@@ -46,9 +46,9 @@ export const ProfileCard = memo((props: IProps) => {
   return (
     <Formik
       initialValues={{
-        name: initialValues?.name,
-        desiredJob: initialValues?.desiredJob,
-        aboutMe: initialValues?.aboutMe,
+        name: initialValues?.name ?? '',
+        desiredJob: initialValues?.desiredJob ?? '',
+        aboutMe: initialValues?.aboutMe ?? '',
       }}
       onSubmit={onSubmit}
       validationSchema={profileValidationSchema}

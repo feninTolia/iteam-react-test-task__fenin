@@ -1,4 +1,5 @@
 import Star from '@/shared/assets/icons/star.svg';
+import { LocalStorageKeys } from '@/shared/constants/localStorage';
 import {
   getLikedFromLS,
   isIdInLiked,
@@ -20,13 +21,13 @@ export const LikeButton = (props: IProps) => {
 
     if (isLiked) {
       const newArray = likedArray.filter((job) => job.id !== id);
-      localStorage.setItem('liked', JSON.stringify(newArray));
+      localStorage.setItem(LocalStorageKeys.LIKED, JSON.stringify(newArray));
       setIsLiked(false);
       return;
     }
 
     likedArray.push({ id, title: jobTitle });
-    localStorage.setItem('liked', JSON.stringify(likedArray));
+    localStorage.setItem(LocalStorageKeys.LIKED, JSON.stringify(likedArray));
     setIsLiked(true);
   }, [id, isLiked, jobTitle]);
 

@@ -1,5 +1,7 @@
+import { LocalStorageKeys } from '@/shared/constants/localStorage';
+
 export const getLikedFromLS = () => {
-  const liked = localStorage?.getItem('liked');
+  const liked = localStorage?.getItem(LocalStorageKeys.LIKED);
 
   return JSON.parse(liked ?? '[]') as Array<{
     id: string | undefined;

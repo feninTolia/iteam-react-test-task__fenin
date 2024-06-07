@@ -1,5 +1,6 @@
 'use client';
 import { LikeButton } from '@/features/LikeButton';
+import { RoutePath } from '@/shared/constants/router';
 import { getLikedFromLS } from '@/shared/lib/helpers/getLikedFromLS';
 import { AppLink, AppLinkTheme } from '@/shared/ui/AppLink';
 import { Text, TextSize } from '@/shared/ui/Text';
@@ -19,8 +20,6 @@ export const LikedPage = () => {
     const result = getLikedFromLS();
     setLikedArray(result);
   }, []);
-
-  console.log(likedArray);
 
   if (likedArray.length === 0) {
     return (
@@ -45,7 +44,7 @@ export const LikedPage = () => {
         {likedArray.map((liked) => (
           <li key={liked.id} className="flex justify-between gap-4 w-full">
             <AppLink
-              href={`/job-details/${liked.id}`}
+              href={`${RoutePath.JOB_DETAILS}/${liked.id}`}
               theme={AppLinkTheme.CLEAR}
             >
               <Text text={liked.title} />
