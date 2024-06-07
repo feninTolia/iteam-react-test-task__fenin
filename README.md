@@ -11,7 +11,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Project Architecture
 
-The project is written according to the Feature sliced design methodology
+The project is written according to the Feature sliced design methodology.
 
 Link to documentation - [feature sliced design](https://feature-sliced.design/docs/get-started/tutorial)
 
